@@ -1,0 +1,37 @@
+<svg width="340" height="210" viewBox="0 0 340 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Card Base -->
+  <rect width="340" height="210" rx="16" fill="url(#card_gradient)"/>
+
+  <!-- Subtle Texture Overlay -->
+  <rect width="340" height="210" rx="16" fill="white" fill-opacity="0.05"/>
+
+  <!-- Content -->
+  <text fill="white" fill-opacity="0.8" xml:space="preserve" style="white-space: pre" font-family="Manrope, sans-serif" font-size="10" font-weight="bold" letter-spacing="0.05em"><tspan x="24" y="32">ORGANIZA GRANA</tspan></text>
+
+  <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Manrope, sans-serif" font-size="20" font-weight="600" letter-spacing="0.02em"><tspan x="24" y="60">Novo Cartão</tspan></text>
+
+  <text fill="white" xml:space="preserve" style="white-space: pre" font-family="monospace" font-size="24" font-weight="500" letter-spacing="0.2em"><tspan x="24" y="100">••••  ••••  ••••</tspan></text>
+  <text fill="white" xml:space="preserve" style="white-space: pre" font-family="monospace" font-size="24" font-weight="500" letter-spacing="0.2em"><tspan x="24" y="128">••••</tspan></text>
+
+  <!-- Labels -->
+  <text fill="white" fill-opacity="0.6" xml:space="preserve" style="white-space: pre" font-family="Manrope, sans-serif" font-size="8" font-weight="600" letter-spacing="0.05em"><tspan x="24" y="165">CARTÃO</tspan></text>
+  <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Manrope, sans-serif" font-size="14" font-weight="600" letter-spacing="0.02em"><tspan x="24" y="185">NOME DO CARTÃO</tspan></text>
+
+
+  <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Manrope, sans-serif" font-size="14" font-weight="600" letter-spacing="0.02em"><tspan x="275" y="185">--/--</tspan></text>
+
+  <!-- Contactless Icon -->
+  <g opacity="0.9">
+    <path d="M295 35C298.5 38.5 300.5 43 300.5 48C300.5 53 298.5 57.5 295 61" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M290 39.5C292.5 42 294 45 294 48C294 51 292.5 54 290 56.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M285 44C286.5 45 287.5 46.5 287.5 48C287.5 49.5 286.5 51 285 52" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Definition of Gradient - Change these colors to change card color -->
+  <defs>
+    <linearGradient id="card_gradient" x1="0" y1="0" x2="340" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00C5A2"/> <!-- Main Color (Dark Emerald) -->
+      <stop offset="1" stop-color="#022C22"/> <!-- Secondary Darker Tone -->
+    </linearGradient>
+  </defs>
+</svg>

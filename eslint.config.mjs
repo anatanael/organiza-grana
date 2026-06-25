@@ -3,7 +3,6 @@ import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 import prettierConfig from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
-import prettierPlugin from "eslint-plugin-prettier";
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -13,14 +12,11 @@ const eslintConfig = defineConfig([
   {
     plugins: {
       import: importPlugin,
-      prettier: prettierPlugin,
     },
     rules: {
-      semi: ["error", "always"],
-      quotes: ["error", "double"],
       "no-unused-vars": "warn",
       "no-multiple-empty-lines": ["error", { max: 1 }],
-      "prettier/prettier": "error",
+
       "import/newline-after-import": "error",
       "import/order": [
         "error",

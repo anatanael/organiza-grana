@@ -47,93 +47,99 @@ export default function Cartoes() {
 
   return (
     <ProtectedRoute>
-      <div className="p-4">
-        <MobileHeader title="Adicionar Cartão" />
+      <div className="flex flex-col items-center">
+        <div className="w-full max-w-150 px-0">
+          <MobileHeader title="Adicionar Cartão" />
 
-        <div className="mb-8 flex justify-center">
-          <CreditCardIcon
-            name={watch("nameOfCard")}
-            color={colorCard}
-            limit={watch("limit")}
-          />
-        </div>
-
-        <form className="flex flex-col gap-6 rounded-[8px] bg-white px-2 py-4 shadow">
-          <FormField label="Nome do cartão" name="nameOfCard">
-            <Input
-              placeholder="Ex. Nubank / Inter / C6 Bank / Caixa"
-              {...register("nameOfCard")}
+          <div className="mb-8 flex justify-center">
+            <CreditCardIcon
+              name={watch("nameOfCard")}
+              color={colorCard}
+              limit={watch("limit")}
             />
-          </FormField>
-
-          <FormField label="Descrição" name="description">
-            <Input placeholder="Uso pessoal" {...register("description")} />
-          </FormField>
-
-          <FormField label="Limite total" name="limit">
-            <CurrencyInput
-              placeholder=" 5.000,00"
-              {...register("limit")}
-              type="number"
-              min={0}
-              step={0.01}
-            />
-          </FormField>
-
-          <div className="flex gap-4">
-            <FormField label="Dia Fechamento" name="dayClosingCard">
-              <DayOfMonthSelect control={control} name="dayClosingCard" />
-            </FormField>
-
-            <FormField label="Dia Vencimento" name="dayDueCard">
-              <DayOfMonthSelect control={control} name="dayDueCard" />
-            </FormField>
           </div>
 
-          <FormField label="Cor do cartão" name="dayClosingCard">
-            <div className="flex gap-2">
-              {colorsCard.map((color) => {
-                const isSelected = colorCard === color;
+          <form className="flex w-full flex-col gap-6 rounded-[8px] bg-white px-2 py-4 shadow">
+            <FormField label="Nome do cartão" name="nameOfCard">
+              <Input
+                placeholder="Ex. Nubank / Inter / C6 Bank / Caixa"
+                {...register("nameOfCard")}
+              />
+            </FormField>
 
-                return (
-                  <Button
-                    key={color}
-                    type="button"
-                    onClick={() => setValue("colorCard", color)}
-                    className={`h-10 w-10 cursor-pointer rounded-full border-2 transition-all ${
-                      isSelected
-                        ? "scale-110 border-white"
-                        : "border-transparent"
-                    }`}
-                    style={{
-                      backgroundColor: color,
-                      boxShadow: isSelected ? `0 0 0 2px ${color}` : undefined,
-                    }}
-                  />
-                );
-              })}
+            <FormField label="Descrição" name="description">
+              <Input placeholder="Uso pessoal" {...register("description")} />
+            </FormField>
 
-              <Popover>
-                <PopoverTrigger asChild>
-                  <button className="border-gra flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border">
-                    <PipetteIcon />
-                  </button>
-                </PopoverTrigger>
+            <FormField label="Limite total" name="limit">
+              <CurrencyInput
+                placeholder=" 5.000,00"
+                {...register("limit")}
+                type="number"
+                min={0}
+                step={0.01}
+              />
+            </FormField>
 
-                <PopoverContent className="w-auto p-2">
-                  <HexColorPicker
-                    color={colorCard}
-                    onChange={(value) => {
-                      setValue("colorCard", value);
-                    }}
-                  />
-                </PopoverContent>
-              </Popover>
+            <div className="flex gap-4">
+              <FormField label="Dia Fechamento" name="dayClosingCard">
+                <DayOfMonthSelect control={control} name="dayClosingCard" />
+              </FormField>
+
+              <FormField label="Dia Vencimento" name="dayDueCard">
+                <DayOfMonthSelect control={control} name="dayDueCard" />
+              </FormField>
             </div>
-          </FormField>
-        </form>
 
-        <Button className="mt-4 w-full cursor-pointer">Cadastrar Cartão</Button>
+            <FormField label="Cor do cartão" name="dayClosingCard">
+              <div className="flex gap-2">
+                {colorsCard.map((color) => {
+                  const isSelected = colorCard === color;
+
+                  return (
+                    <Button
+                      key={color}
+                      type="button"
+                      onClick={() => setValue("colorCard", color)}
+                      className={`h-10 w-10 cursor-pointer rounded-full border-2 transition-all ${
+                        isSelected
+                          ? "scale-110 border-white"
+                          : "border-transparent"
+                      }`}
+                      style={{
+                        backgroundColor: color,
+                        boxShadow: isSelected
+                          ? `0 0 0 2px ${color}`
+                          : undefined,
+                      }}
+                    />
+                  );
+                })}
+
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button className="border-gra flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border">
+                      <PipetteIcon />
+                    </button>
+                  </PopoverTrigger>
+
+                  <PopoverContent className="w-auto p-2">
+                    <HexColorPicker
+                      color={colorCard}
+                      onChange={(value) => {
+                        setValue("colorCard", value);
+                      }}
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+            </FormField>
+          </form>
+
+          <Button className="mt-4 w-full cursor-pointer">
+            Cadastrar Cartão
+          </Button>
+        </div>
       </div>
     </ProtectedRoute>
   );

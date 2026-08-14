@@ -9,7 +9,7 @@ export default function MobileHeader() {
   const router = useRouter();
 
   return (
-    <div className="item-center relative mb-12 flex w-full justify-center">
+    <div className="item-center relative mb-12 flex w-full justify-center lg:hidden">
       <button
         className="absolute top-1/2 left-0 -translate-y-1/2"
         onClick={() => router.back()}

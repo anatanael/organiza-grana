@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -12,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/lib/supabase/client";
 
 import MobileHeader from "../_components/mobile_header";
+
+import SvgComponent from "./Icon";
 
 type FormData = {
   email: string;
@@ -68,69 +71,86 @@ export default function Home() {
   }
 
   return (
-    <div className="flex h-screen flex-col items-center p-4">
+    <div className="mx-auto flex h-screen w-full max-w-lg flex-col p-4 lg:max-w-none lg:flex-row">
       <MobileHeader />
 
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold">Acesse sua conta</h1>
-
-        <h3 className="text-lg">Gerencia suas finanças de forma simples.</h3>
+      <div className="hidden items-center justify-center gap-4 lg:flex lg:flex-1">
+        <SvgComponent width={500} height={400} />
       </div>
 
-      <form className="w-full" onSubmit={handleSubmit(handleLogin)}>
-        <div className="mb-4 flex w-full flex-col gap-6">
-          <Input
-            label="Email"
-            placeholder="usuario@email.com"
-            autoComplete="on"
-            {...register("email", {
-              required: "E-mail é obrigatório",
-              pattern: {
-                value:
-                  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                message: "E-mail inválido",
-              },
-            })}
-            error={errors?.email?.message}
-          />
-          <Input
-            label="Senha"
-            placeholder="**********"
-            autoComplete="on"
-            type="password"
-            {...register("password", {
-              required: "Senha é obrigatória",
-              minLength: {
-                value: 6,
-                message: "Senha deve ter pelo menos 6 caracteres",
-              },
-            })}
-            error={errors?.password?.message}
+      <div className="flex w-full flex-1 flex-col lg:items-center lg:justify-center">
+        <div className="mb-12 hidden justify-center gap-4 lg:flex">
+          <Image
+            src="/assets/images/logo.png"
+            alt="Organiza Grana Logo"
+            width={280}
+            height={280}
+            className="h-auto"
+            priority
           />
         </div>
 
-        <Link
-          className="m-6 block cursor-pointer text-right"
-          href="/recuperar_senha"
-        >
-          Esqueci a senha
-        </Link>
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold">Acesse sua conta</h1>
 
-        <Button
-          variant={"default"}
-          disabled={isSubmitting || !isValid}
-          className="mb-6 w-full cursor-pointer"
-        >
-          Entrar
-        </Button>
+          <h3 className="text-lg">Gerencia suas finanças de forma simples.</h3>
+        </div>
 
-        <div className="text-center">
-          <span className="block">Não possui uma conta ?</span>
-          <Link className="text-primary bold cursor-pointer" href="/cadastro">
-            Cadastre-se
+        <form className="w-full lg:w-100" onSubmit={handleSubmit(handleLogin)}>
+          <div className="mb-4 flex w-full flex-col gap-6">
+            <Input
+              label="Email"
+              placeholder="usuario@email.com"
+              autoComplete="on"
+              {...register("email", {
+                required: "E-mail é obrigatório",
+                pattern: {
+                  value:
+                    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                  message: "E-mail inválido",
+                },
+              })}
+              error={errors?.email?.message}
+            />
+            <Input
+              label="Senha"
+              placeholder="**********"
+              autoComplete="on"
+              type="password"
+              {...register("password", {
+                required: "Senha é obrigatória",
+                minLength: {
+                  value: 6,
+                  message: "Senha deve ter pelo menos 6 caracteres",
+                },
+              })}
+              error={errors?.password?.message}
+            />
+          </div>
+
+          <Link
+            className="m-6 block cursor-pointer text-right"
+            href="/recuperar_senha"
+          >
+            Esqueci a senha
           </Link>
-        </div>
-      </form>
+
+          <Button
+            variant={"default"}
+            disabled={isSubmitting || !isValid}
+            className="mb-6 w-full cursor-pointer"
+          >
+            Entrar
+          </Button>
+
+          <div className="text-center">
+            <span className="block">Não possui uma conta ?</span>
+            <Link className="text-primary bold cursor-pointer" href="/cadastro">
+              Cadastre-se
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

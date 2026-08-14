@@ -7,7 +7,7 @@ interface FeatureCardProps {
 export default function FeatureCard({ icon, title, text }: FeatureCardProps) {
   return (
     <div className="flex items-center gap-4">
-      <span className="bg-primary/25 text-primary flex h-9 items-center justify-center rounded-sm">
+      <span className="bg-primary/25 text-primary flex h-9 items-center justify-center rounded-sm px-2 py-4">
         <div className="iconContainer">{icon}</div>
       </span>
 

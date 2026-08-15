@@ -74,12 +74,17 @@ export default function Home() {
     <div className="mx-auto flex h-screen w-full max-w-lg flex-col p-4 lg:max-w-none lg:flex-row">
       <MobileHeader />
 
-      <div className="hidden items-center justify-center gap-4 lg:flex lg:flex-1">
+      <div className="hidden flex-col items-center justify-center gap-8 lg:flex lg:flex-1">
         <SvgComponent width={500} height={400} />
+
+        <p className="text-lg">Organize suas finanças com praticidade</p>
       </div>
 
       <div className="flex w-full flex-1 flex-col lg:items-center lg:justify-center">
-        <div className="mb-12 hidden justify-center gap-4 lg:flex">
+        <div
+          className="mb-12 hidden cursor-pointer justify-center gap-4 lg:flex"
+          onClick={() => router.push("/")}
+        >
           <Image
             src="/assets/images/logo.png"
             alt="Organiza Grana Logo"

@@ -1,18 +1,38 @@
-import Link from "next/link";
+import Image from "next/image";
 
-import MobileHeader from "@/app/(auth)/_components/mobile_header";
+import { AppSidebar } from "@/app/(dashboard)/_components/app_sidebar";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
-import { Button } from "@/components/ui/button";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
-export default function Dashboard() {
+export default function Dashboard({ children }: { children: React.ReactNode }) {
   return (
     <ProtectedRoute>
-      <MobileHeader />
-      <h1>Bem vindo ao Organiza Grana</h1>
+      <SidebarProvider>
+        <AppSidebar />
+        <main className="flex-1 p-4 lg:p-0">
+          <div className="flex items-center justify-between bg-white p-2 shadow">
+            <div className="flex gap-1">
+              <SidebarTrigger className="lg:hidden" />
+              <span className="text-primary text-2xl font-bold">
+                Organiza Grana
+              </span>
+            </div>
 
-      <Link href="/cartoes/novo">
-        <Button>Cartões</Button>
-      </Link>
+            <div className="bg-primary flex h-12 w-12 items-center justify-center rounded-full">
+              <Image
+                src="https://api.dicebear.com/9.x/avataaars/png?seed=Felix"
+                alt="Organiza Grana Logo"
+                width={40}
+                height={40}
+                className="h-auto rounded-full"
+                priority
+              />
+            </div>
+          </div>
+
+          {children}
+        </main>
+      </SidebarProvider>
     </ProtectedRoute>
   );
 }

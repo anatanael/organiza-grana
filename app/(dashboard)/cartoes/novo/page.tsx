@@ -4,7 +4,7 @@ import { PipetteIcon } from "lucide-react";
 import { HexColorPicker } from "react-colorful";
 import { useForm } from "react-hook-form";
 
-import MobileHeader from "@/app/(dashboard)/_components/mobile_header";
+import MobileHeader from "@/app/(dashboard)/_components/header_dashboard";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
 import { CurrencyInput } from "@/components/common/CurrencyInput";
 import { DayOfMonthSelect } from "@/components/common/DayOfMonthSelect";
@@ -49,7 +49,7 @@ export default function Cartoes() {
     <ProtectedRoute>
       <div className="flex flex-col items-center">
         <div className="w-full max-w-150 px-0">
-          <MobileHeader title="Adicionar Cartão" />
+          <MobileHeader />
 
           <div className="mb-8 flex justify-center">
             <CreditCardIcon

@@ -20,7 +20,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function HeaderDashboard() {
   return (
-    <div className="mb-4 flex items-center justify-between bg-white p-2 shadow">
+    <div className="mb-4 flex items-center justify-between bg-white p-2 shadow lg:mb-0">
       <div className="flex gap-1">
         <SidebarTrigger className="lg:hidden" />
         <span className="text-primary text-2xl font-bold">Organiza Grana</span>

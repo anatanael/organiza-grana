@@ -1,67 +1,95 @@
-interface PropsCreditCardIcon {
+interface CreditCardIconProps {
   name: string;
-  limit: number;
-  color: string;
+  description?: string;
+  color?: string;
 }
 
-export default function CreditCardIcon(
-  { name, color, limit }: PropsCreditCardIcon = {
-    name: "NOME DO CARTÃO",
-    limit: 0,
-    color: "#00C5A2",
-  },
-) {
+// Função auxiliar simples para verificar se uma cor HEX é clara
+function isLightColor(color: string): boolean {
+  if (!color.startsWith("#")) return false;
+  const hex = color.replace("#", "");
+  const r = parseInt(hex.substr(0, 2), 16);
+  const g = parseInt(hex.substr(2, 2), 16);
+  const b = parseInt(hex.substr(4, 2), 16);
+  // Fórmula padrão de luminância
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  return brightness > 155; // Retorna true se for um fundo claro
+}
+
+export function CreditCardIcon({
+  name,
+  description,
+  color = "var(--primary)",
+}: CreditCardIconProps) {
+  // Define se o texto deve ser preto (#000) ou branco (#fff)
+  const isLight = isLightColor(color);
+  const textColor = isLight ? "#111827" : "#fff"; // Preto suave ou Branco
+
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       width={340}
       height={210}
-      viewBox="0 0 340 210"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width={340} height={210} rx={16} fill="url(#card_gradient)" />
-      <rect width={340} height={210} rx={16} fill="white" fillOpacity={0.05} />
+      <defs>
+        <filter id="a" width="140%" height="140%" x="-20%" y="-20%">
+          <feComponentTransfer in="SourceAlpha">
+            <feFuncA type="linear" />
+          </feComponentTransfer>
+          <feGaussianBlur result="blur" stdDeviation={12} />
+          <feOffset dy={4} />
+          <feComposite in2="SourceGraphic" operator="out" />
+          <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0" />
+          <feComposite in2="SourceGraphic" operator="atop" />
+        </filter>
+      </defs>
+      <rect width={340} height={210} fill={color} rx={16} />
+      <rect width={340} height={210} fill={color} filter="url(#a)" rx={16} />
+      {/* Camada de brilho sutil adaptada para fundos claros ou escuros */}
+      <rect
+        width={340}
+        height={210}
+        fill={isLight ? "#000" : "#fff"}
+        fillOpacity={isLight ? 0.04 : 0.06}
+        rx={16}
+      />
+
       <text
-        fill="white"
-        fillOpacity={0.8}
         xmlSpace="preserve"
-        style={{
-          whiteSpace: "pre",
-        }}
+        fill={textColor}
+        fillOpacity={0.85}
         fontFamily="Manrope, sans-serif"
         fontSize={10}
         fontWeight="bold"
-        letterSpacing="0.05em"
+        letterSpacing=".05em"
+        style={{ whiteSpace: "pre" }}
       >
         <tspan x={24} y={32}>
           {"ORGANIZA GRANA"}
         </tspan>
       </text>
       <text
-        fill="white"
         xmlSpace="preserve"
-        style={{
-          whiteSpace: "pre",
-        }}
+        fill={textColor}
         fontFamily="Manrope, sans-serif"
         fontSize={20}
         fontWeight={600}
-        letterSpacing="0.02em"
+        letterSpacing=".02em"
+        style={{ whiteSpace: "pre" }}
       >
         <tspan x={24} y={60}>
-          {name}
+          {name || "NOME DO CARTÃO"}
         </tspan>
       </text>
       <text
-        fill="white"
         xmlSpace="preserve"
-        style={{
-          whiteSpace: "pre",
-        }}
+        fill={textColor}
         fontFamily="monospace"
         fontSize={24}
         fontWeight={500}
-        letterSpacing="0.2em"
+        letterSpacing=".2em"
+        style={{ whiteSpace: "pre" }}
       >
         <tspan x={24} y={100}>
           {
@@ -70,99 +98,66 @@ export default function CreditCardIcon(
         </tspan>
       </text>
       <text
-        fill="white"
         xmlSpace="preserve"
-        style={{
-          whiteSpace: "pre",
-        }}
+        fill={textColor}
         fontFamily="monospace"
         fontSize={24}
         fontWeight={500}
-        letterSpacing="0.2em"
+        letterSpacing=".2em"
+        style={{ whiteSpace: "pre" }}
       >
         <tspan x={24} y={128}>
           {"\u2022\u2022\u2022\u2022"}
         </tspan>
       </text>
       <text
-        fill="white"
-        fillOpacity={0.6}
         xmlSpace="preserve"
-        style={{
-          whiteSpace: "pre",
-        }}
+        fill={textColor}
+        fillOpacity={0.65}
         fontFamily="Manrope, sans-serif"
         fontSize={8}
         fontWeight={600}
-        letterSpacing="0.05em"
+        letterSpacing=".05em"
+        style={{ whiteSpace: "pre" }}
       >
         <tspan x={24} y={165}>
           {"CART\xC3O"}
         </tspan>
       </text>
       <text
-        fill="white"
         xmlSpace="preserve"
-        style={{
-          whiteSpace: "pre",
-        }}
+        fill={textColor}
         fontFamily="Manrope, sans-serif"
         fontSize={14}
         fontWeight={600}
-        letterSpacing="0.02em"
+        letterSpacing=".02em"
+        style={{ whiteSpace: "pre" }}
       >
         <tspan x={24} y={185}>
-          R$ {limit}
+          {description || "Descrição"}
         </tspan>
       </text>
       <text
-        fill="white"
         xmlSpace="preserve"
-        style={{
-          whiteSpace: "pre",
-        }}
+        fill={textColor}
         fontFamily="Manrope, sans-serif"
         fontSize={14}
         fontWeight={600}
-        letterSpacing="0.02em"
+        letterSpacing=".02em"
+        style={{ whiteSpace: "pre" }}
       >
         <tspan x={275} y={185}>
           {"--/--"}
         </tspan>
       </text>
-      <g opacity={0.9}>
-        <path
-          d="M295 35C298.5 38.5 300.5 43 300.5 48C300.5 53 298.5 57.5 295 61"
-          stroke="white"
-          strokeWidth={2}
-          strokeLinecap="round"
-        />
-        <path
-          d="M290 39.5C292.5 42 294 45 294 48C294 51 292.5 54 290 56.5"
-          stroke="white"
-          strokeWidth={2}
-          strokeLinecap="round"
-        />
-        <path
-          d="M285 44C286.5 45 287.5 46.5 287.5 48C287.5 49.5 286.5 51 285 52"
-          stroke="white"
-          strokeWidth={2}
-          strokeLinecap="round"
-        />
+      <g
+        stroke={textColor}
+        strokeLinecap="round"
+        strokeWidth={2}
+        opacity={0.95}
+      >
+        <path d="M295 35c3.5 3.5 5.5 8 5.5 13s-2 9.5-5.5 13M290 39.5c2.5 2.5 4 5.5 4 8.5s-1.5 6-4 8.5M285 44c1.5 1 2.5 2.5 2.5 4s-1 3-2.5 4" />
       </g>
-      <defs>
-        <linearGradient
-          id="card_gradient"
-          x1={0}
-          y1={0}
-          x2={340}
-          y2={210}
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor={color} />
-          <stop offset={1} stopColor="#022C22" />
-        </linearGradient>
-      </defs>
     </svg>
   );
 }

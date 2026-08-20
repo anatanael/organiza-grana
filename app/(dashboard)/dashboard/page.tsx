@@ -1,10 +1,10 @@
 "use client";
 
-import { AvailableBalanceCard } from "./components/AvailableBalanceCard";
-import { BarChartCard } from "./components/BarChartCard";
-import { InvoiceCard } from "./components/InvoiceCard";
-import { PurchaseCard } from "./components/PurchaseCard";
-import { TransactionCard } from "./components/TransactionCard";
+import { AvailableBalanceCard } from "./_components/AvailableBalanceCard";
+import { BarChartCard } from "./_components/BarChartCard";
+import { InvoiceCard } from "./_components/InvoiceCard";
+import { PurchaseCard } from "./_components/PurchaseCard";
+import { TransactionCard } from "./_components/TransactionCard";
 
 const baseClassContainer = "flex flex-col rounded-lg bg-white border-2";
 

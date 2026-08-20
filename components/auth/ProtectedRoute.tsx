@@ -21,7 +21,7 @@ export default function ProtectedRoute({ children }: Props) {
       } = await supabase.auth.getSession();
 
       if (!session) {
-        router.replace("/login");
+        router.replace("/entrar");
         return;
       }
 

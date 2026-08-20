@@ -1,4 +1,4 @@
-import { CreditCard, ShoppingBag, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
 import { formatCurrency } from "@/lib/formatters";
 
@@ -9,7 +9,7 @@ interface TransactionCardProps {
   category: string;
 }
 
-export default function TransactionCard({
+export function TransactionCard({
   title,
   date,
   value,
@@ -34,7 +34,7 @@ export default function TransactionCard({
   }
 
   return (
-    <div className="flex flex-row items-center justify-between">
+    <>
       <div className="flex flex-row gap-3">
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#dae7e6]">
           <ShoppingCart size={24} />
@@ -49,16 +49,14 @@ export default function TransactionCard({
         </div>
       </div>
 
-      <div className="flex flex-col items-end justify-end">
-        <span
-          className={`text-lg font-semibold ${value > 0 ? "text-red-500" : ""}`}
-        >
+      <div className="flex flex-col items-end justify-end gap-1">
+        <span className={`text-base ${value > 0 ? "text-red-500" : ""}`}>
           {value > 0 ? `- ${formatCurrency(value)}` : formatCurrency(value)}
         </span>
         <p className="w-fit rounded bg-[#eee] px-2 py-1 align-bottom text-xs">
           {category}
         </p>
       </div>
-    </div>
+    </>
   );
 }

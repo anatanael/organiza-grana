@@ -1,12 +1,12 @@
 "use client";
 
-import { ChevronRight, Landmark, TrendingDown } from "lucide-react";
-import Link from "next/link";
+import { AvailableBalanceCard } from "./components/AvailableBalanceCard";
+import { BarChartCard } from "./components/BarChartCard";
+import { InvoiceCard } from "./components/InvoiceCard";
+import { PurchaseCard } from "./components/PurchaseCard";
+import { TransactionCard } from "./components/TransactionCard";
 
-import InvoicesArea from "./(invoices)/InvoicesArea";
-import PurchasesArea from "./(purchases)/PurchasesArea";
-import TransactionArea from "./(transactions)/TransactionArea";
-import BarCharts from "./barCharts";
+const baseClassContainer = "flex flex-col rounded-lg bg-white border-2";
 
 export default function Dashboard() {
   return (
@@ -14,50 +14,71 @@ export default function Dashboard() {
       <h2 className="hidden text-4xl font-bold lg:block">Resumo Financeiro</h2>
 
       <div className="flex flex-col gap-6 lg:flex-row">
-        <div className="flex w-full flex-col gap-4 rounded bg-white px-4 py-8 shadow lg:w-fit lg:justify-between lg:p-8">
-          <div className="flex flex-row items-center justify-between">
-            <h4 className="text-lg">Saldo disponível</h4>
-            <Landmark size={24} />
-          </div>
-
-          <div>
-            <span className="text-4xl font-bold">R$ 12.450,00</span>
-          </div>
-
-          <Link className="flex flex-row gap-2" href="/dashboard">
-            <span className="text-sm">Ver todas carteiras</span>
-            <ChevronRight />
-          </Link>
+        <div
+          className={`${baseClassContainer} w-full gap-4 px-4 py-8 lg:w-fit lg:justify-between lg:p-8`}
+        >
+          <AvailableBalanceCard />
         </div>
 
-        <div className="flex max-w-full flex-1 flex-col gap-8 overflow-hidden rounded bg-white p-4 shadow lg:flex-row">
-          <div className="flex lg:flex-col">
-            <div className="flex flex-1 flex-col p-1">
-              <span className="text-base">Gasto mensal</span>
-              <p className="text-2xl">R$ 3.842,00</p>
-              <div className="flex flex-row items-center gap-2">
-                <TrendingDown />
-                <span className="text-sm">7,8% vs mês anterior</span>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <span className="text-sm">Média anual</span>
-              <p className="text-base">R$ 3.564,20</p>
-            </div>
-          </div>
-
-          <div className="h-80 w-full overflow-x-auto outline-none **:outline-none lg:h-60">
-            <BarCharts />
-          </div>
+        <div
+          className={`${baseClassContainer} max-w-full flex-1 gap-8 overflow-hidden p-4 lg:flex-row`}
+        >
+          <BarChartCard />
         </div>
       </div>
-      <InvoicesArea />
+
+      <div className={`${baseClassContainer} flex-col gap-2 p-4`}>
+        <h4 className="text-xl">Fatura Cartões</h4>
+
+        <div className="flex flex-col gap-4 lg:flex-row lg:justify-between">
+          <InvoiceCard
+            title="Próxima fatura"
+            value={2950.25}
+            totalCards={4}
+            totalPurchased={15}
+          />
+          <InvoiceCard
+            title="Fatura atual"
+            value={4896.86}
+            totalCards={6}
+            totalPurchased={25}
+          />
+          <InvoiceCard
+            title="Fatura anterior"
+            value={3585.7}
+            totalCards={2}
+            totalPurchased={8}
+          />
+        </div>
+      </div>
 
       <div className="flex flex-col gap-6 lg:flex-row lg:gap-18">
-        <PurchasesArea />
+        <div className={`${baseClassContainer} flex-1 gap-2 p-4`}>
+          <h4 className="text-xl">Compras Parceladas</h4>
 
-        <TransactionArea />
+          <div className="flex flex-1 justify-between p-4">
+            <PurchaseCard
+              title="Televisão"
+              card={"Nubank"}
+              value={400}
+              installmentNumber={4}
+              totalInstallments={12}
+            />
+          </div>
+        </div>
+
+        <div className={`${baseClassContainer} flex-1 gap-2 p-4`}>
+          <h4 className="text-xl">Transações recentes</h4>
+
+          <div className="flex flex-1 justify-between p-4">
+            <TransactionCard
+              title="Supermercado"
+              date={new Date()}
+              value={400}
+              category={"Mercado"}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

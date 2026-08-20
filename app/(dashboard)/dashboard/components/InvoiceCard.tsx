@@ -9,14 +9,14 @@ interface InvoiceCardProps {
   totalPurchased: number;
 }
 
-export default function InvoiceCard({
+export function InvoiceCard({
   title,
   value,
   totalCards,
   totalPurchased,
 }: InvoiceCardProps) {
   return (
-    <div className="flex flex-col gap-4 rounded-xl border p-4 lg:w-full">
+    <div className="flex flex-col gap-4 rounded-xl border-2 p-4 lg:w-full">
       <div className="flex flex-row justify-between">
         <div className="flex flex-row items-center gap-4">
           <div className="bg-primary/25 flex h-12 w-12 items-center justify-center rounded-full">
@@ -34,7 +34,7 @@ export default function InvoiceCard({
         </div>
       </div>
 
-      <hr />
+      <hr className="border" />
 
       <div className="flex flex-row gap-2">
         <div className="flex flex-row items-center gap-2">

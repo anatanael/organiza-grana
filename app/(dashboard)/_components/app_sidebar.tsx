@@ -22,6 +22,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarHeader,
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 const items = [
@@ -33,6 +34,7 @@ const items = [
 
 export function AppSidebar() {
   const router = useRouter();
+  const { setOpenMobile, isMobile } = useSidebar();
 
   return (
     <Sidebar collapsible="offcanvas">
@@ -62,7 +64,12 @@ export function AppSidebar() {
                     asChild
                     className="hover:bg-primary/25 flex h-12.5 gap-2 rounded text-xl"
                   >
-                    <Link href={item.url}>
+                    <Link
+                      href={item.url}
+                      onClick={() => {
+                        if (isMobile) setOpenMobile(false);
+                      }}
+                    >
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>

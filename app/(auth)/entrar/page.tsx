@@ -36,6 +36,21 @@ export default function Home() {
   });
 
   useEffect(() => {
+    async function checkAuth() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (session) {
+        router.replace("/dashboard");
+        return;
+      }
+    }
+
+    checkAuth();
+  }, [router]);
+
+  useEffect(() => {
     const emailSession = sessionStorage.getItem("loginEmail");
 
     if (emailSession) {
